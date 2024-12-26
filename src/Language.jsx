@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import light from "./assets/Sky Switch - Light.png";
 import dark from "./assets/Sky Switch - Dark.png";
 import darkbtn from "./assets/Dark button.png";
@@ -38,12 +40,16 @@ const LanguageTranslator = () => {
   };
 
   const copyToClipboard = () => {
-    if (translatedText) {
-      navigator.clipboard.writeText(translatedText);
-      alert("Translation copied to clipboard!");
-    } else {
-      alert("No translation available to copy.");
-    }
+    navigator.clipboard.writeText(translatedText);
+    toast.success("Translation copied to clipboard!", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: isDark ? "dark" : "light",
+    });
   };
 
   const languages = [
@@ -306,8 +312,8 @@ const LanguageTranslator = () => {
             GenixBit Labs Pvt.Ltd.
           </a>
         </div>
-        
       </div>
+      <ToastContainer />
     </div>
   );
 };
